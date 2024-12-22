@@ -3,16 +3,17 @@ import '../models/shoe.dart';
 
 class ShoeTile extends StatelessWidget {
   Shoe shoe;
+  void Function()? onTap;
   ShoeTile({
     super.key,
-    required this.shoe
+    required this.shoe,
+    required this.onTap
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(left: 25),
-      height: 500,
       width: 280,
       decoration: BoxDecoration(
         color: Colors.grey[100],
@@ -29,10 +30,13 @@ class ShoeTile extends StatelessWidget {
             )
           ),
 
-          Text(
-            shoe.description,
-            style: TextStyle(
-              color: Colors.grey[600]
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            child: Text(
+              shoe.description,
+              style: TextStyle(
+                color: Colors.grey[600]
+              ),
             ),
           ),
 
@@ -65,16 +69,19 @@ class ShoeTile extends StatelessWidget {
                   ],
                 ),
 
-                Container(
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(12),
-                      bottomRight: Radius.circular(12)
-                    )
+                GestureDetector(
+                  onTap: onTap,
+                  child: Container(
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        bottomRight: Radius.circular(12)
+                      )
+                    ),
+                    child: Icon(Icons.add, color: Colors.white)
                   ),
-                  child: Icon(Icons.add, color: Colors.white)
                 )
               ],
             ),
